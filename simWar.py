@@ -13,6 +13,8 @@ def main():
     turnArray = []
     cardArray1 = []
     cardArray2 = []
+    sumArray1 = []
+    sumArray2 = []
     
     # Define the available cards
     # 52 cards, 4 of each card, 13 unique cards (14 is ace)
@@ -46,6 +48,8 @@ def main():
             turnArray.append(turns)
             cardArray1.append(len(players[0]))
             cardArray2.append(len(players[1]))
+            sumArray1.append(sum(players[0]))
+            sumArray2.append(sum(players[1]))
         
         turns += 1
         #print len(players[0]), len(players[1])
@@ -78,6 +82,9 @@ def main():
         turnArray.append(turns)
         cardArray1.append(len(players[0]))
         cardArray2.append(len(players[1]))
+        sumArray1.append(sum(players[0]))
+        sumArray2.append(sum(players[1]))
+
 
     winner = 2
     if len(players[0]) > 0:
@@ -91,6 +98,15 @@ def main():
         plt.xlabel("Turn")
         plt.grid(True)
         plt.ylim(0,52)
+        plt.xlim(0,turns)
+        plt.show()
+        plt.plot(turnArray, sumArray1, lw=2, color='b')
+        plt.plot(turnArray, sumArray2, lw=2, color='r')
+        plt.ylabel("Card sum")
+        plt.xlabel("Turn")
+        plt.grid(True)
+        plt.ylim(0,4*sum(range(0,15)))
+        plt.xlim(0,turns)
         plt.show()
 
 def WarTime(players):
@@ -100,7 +116,7 @@ def WarTime(players):
 
     while winner < 0:
 
-        # Check if both players have enough cards to have a war, otherwise they lose and get all the cards
+        # Check if both players have enough cards to have a war, otherwise they lose all their cards
         if len(players[0]) < 2:
             cardStack.extend(players[0])
             players[1].extend(cardStack)
