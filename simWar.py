@@ -75,7 +75,7 @@ def main():
             print "Player 2:", players[1], "-", len(players[1]), "card(s)."
 
         if (len(players[0]) + len(players[1])) > 52: # Just make sure we don't stuff up
-            print "ERROR!!"
+            print "ERROR: Convservation of cards has been violated!!"
             return
 
     if plot:
